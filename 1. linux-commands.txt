@@ -1,1 +1,102 @@
+1. Change your password to a password:
+bash
+Copy code
+passwd
+This will prompt you to enter your current password and then your new password.
 
+2. Display the system’s date:
+bash
+Copy code
+date
+
+3. Count the number of lines in the /etc/passwd file:
+bash
+Copy code
+wc -l /etc/passwd
+
+4. Find out who else is on the system:
+bash
+Copy code
+who
+or
+
+bash
+Copy code
+w
+
+5. Direct the output of the man pages for the date command to a file named mydate:
+bash
+Copy code
+man date > mydate
+
+6. Create a subdirectory called mydir:
+bash
+Copy code
+mkdir mydir
+
+7. Move the file mydate into the new subdirectory:
+bash
+Copy code
+mv mydate mydir/
+
+8. Go to the subdirectory mydir and copy the file mydate to a new file called ourdate:
+bash
+Copy code
+cd mydir
+cp mydate ourdate
+
+9. List the contents of mydir:
+bash
+Copy code
+ls mydir
+
+10. Do a long listing on the file ourdate and note the permissions:
+bash
+Copy code
+ls -l mydir/ourdate
+
+11. Display the name of the current directory starting from the root:
+bash
+Copy code
+pwd
+
+12. Move the files in the directory mydir back to the HOME directory:
+bash
+Copy code
+mv mydir/* ~/
+
+13. List all the files in your HOME directory:
+bash
+Copy code
+ls ~
+
+14. Display the first 5 lines of mydate:
+bash
+Copy code
+head -n 5 mydate
+
+15. Display the last 8 lines of mydate:
+bash
+Copy code
+tail -n 8 mydate
+
+16. Remove the directory mydir:
+bash
+Copy code
+rmdir mydir
+
+17. Redirect the output of the long listing of files to a file named list:
+bash
+Copy code
+ls -l > list
+
+18. Select any 5 capitals of states in India and enter them in a file named capitals1. Choose 5 more capitals and enter them in a file named capitals2. Choose 5 more capitals and enter them in a file named capitals3. Concatenate all 3 files and redirect the output to a file named capitals:
+echo -e "Delhi\nMumbai\nChennai\nKolkata\nBengaluru" > capitals1
+echo -e "Hyderabad\nJaipur\nLucknow\nBhopal\nChandigarh" > capitals2
+echo -e "Patna\nAhmedabad\nThiruvananthapuram\nGuwahati\nShimla" > capitals3
+cat capitals1 capitals2 capitals3 > capitals
+
+19. Concatenate the file capitals2 at the end of file capitals:
+bash
+Copy code
+cat capitals2 >> capitals
