@@ -1,0 +1,85 @@
+1. Print lines and line numbers from input.txt
+awk '{ print NR, $0 }' input.txt
+Explanation:
+  NR: Built-in variable that represents the line number.
+  $0: Represents the entire line.
+
+2. Print the first and second fields from marks.txt if the third field (Telugu) is >=50
+awk -F ',' -v OFS=',' '$3 >= 50 { print $1, $2 }' marks.txt
+Explanation:
+  -F ',': Specifies the input field separator as a comma.
+  -v OFS=',': Sets the output field separator to a comma.
+  $3 >= 50: Checks if the value of the third field is >= 50.
+  print $1, $2: Prints the first and second fields.
+
+3. Generate results for students from marks.txt
+awk -F ',' '
+{
+    total = $3 + $4 + $5 + $6 + $7;
+    result = ($3 >= 30 && $4 >= 30 && $5 >= 40 && $6 >= 40 && $7 >= 40) ? "PASS" : "FAIL";
+    print $1, $2, total, result;
+}' marks.txt
+Explanation:
+  Fields: $1 = Student ID, $2 = Name, $3-$7 = Marks in various subjects.
+  Calculates total marks by summing fields $3 to $7.
+  Determines result as PASS if the conditions for marks are met; otherwise, FAIL.
+  Prints Student ID, Name, Total Marks, and Result.
+
+4. Print fields 1 and 4 of marks.txt and calculate the average of the 4th field (English)
+awk -F ',' '
+{
+    print $1, $4;
+    sum += $4;
+    count++;
+}
+END {
+    print "Average of 4th field:", sum / count;
+}' marks.txt
+Explanation:
+  Prints the first and fourth fields from the file.
+  Accumulates the sum of the fourth field and counts the number of lines.
+  In the END block, calculates and prints the average.
+
+5. Demonstrate user-defined functions and system commands with input.txt
+awk '
+function line_length(line) {
+    return length(line);
+}
+{
+    print "Line:", NR, "Length:", line_length($0);
+}
+END {
+    print "Total Lines:", NR;
+    system("date");
+}' input.txt
+Explanation:
+  function square(x): User-defined function to calculate the square of a number.
+  Prints the square of the first field for each line.
+  Uses system("date") to execute a system command (prints the current date).
+
+
+6. Count lines in input.txt that do not contain vowels
+awk '!/[aeiouAEIOU]/ { count++ } END { print "Lines without vowels:", count }' input.txt
+Explanation:
+  !/[aeiouAEIOU]/: Matches lines that do not contain vowels.
+  Increments count for each such line.
+  In the END block, prints the total count.
+
+7. Find the number of characters, words, and lines in input.txt
+awk '
+{
+    char_count += length($0) + 1;  # Add 1 for the newline
+    word_count += NF;
+    line_count++;
+}
+END {
+    print "Characters:", char_count;
+    print "Words:", word_count;
+    print "Lines:", line_count;
+}' input.txt
+Explanation:
+  length($0): Counts characters in the current line.
+  NF: Represents the number of fields (words) in the current line.
+  Increments char_count, word_count, and line_count for each line.
+  In the END block, prints the totals.
+
