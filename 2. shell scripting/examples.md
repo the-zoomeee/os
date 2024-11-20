@@ -55,3 +55,92 @@ done
 # Print the total number of occurrences
 echo "Total occurrences: $count"
 ```
+
+---
+
+## Check if a Number is Prime
+This script checks if a given number is prime or not.
+```bash
+#!/bin/bash
+# Script to check if a number is prime
+
+echo "Enter a number: "
+read number
+
+is_prime=1
+
+# Check if the number is less than 2
+if [ $number -le 1 ]; then
+  echo "$number is not a prime number."
+  exit
+fi
+
+# Check for factors
+for ((i = 2; i <= number / 2; i++)); do
+  if [ $((number % i)) -eq 0 ]; then
+    is_prime=0
+    break
+  fi
+done
+
+if [ $is_prime -eq 1 ]; then
+  echo "$number is a prime number."
+else
+  echo "$number is not a prime number."
+fi
+```
+
+---
+
+## Count Number of Files in a Directory
+This script counts the number of files in a specified directory.
+```bash
+#!/bin/bash
+# Script to count the number of files in a directory
+
+echo "Enter the directory path: "
+read directory
+
+# Count files in the directory
+file_count=$(ls -1q $directory | wc -l)
+
+echo "There are $file_count files in the directory $directory."
+```
+
+---
+
+## Calculate Factorial
+This script calculates the factorial of a number.
+```bash
+#!/bin/bash
+# Script to calculate factorial
+
+echo "Enter a number: "
+read number
+
+factorial=1
+
+# Loop to calculate factorial
+for ((i = 1; i <= number; i++)); do
+  factorial=$((factorial * i))
+done
+
+echo "The factorial of $number is $factorial."
+```
+
+---
+
+## Reverse a String
+This script reverses the entered string.
+```bash
+#!/bin/bash
+# Script to reverse a string
+
+echo "Enter a string: "
+read input_string
+
+# Reverse the string using `rev` command
+reversed_string=$(echo $input_string | rev)
+
+echo "The reversed string is: $reversed_string"
+```
