@@ -1,0 +1,197 @@
+1. Display your permanent address:
+bash
+Copy code
+#!/bin/bash
+echo "My permanent address is: 1234 Main St, Springfield, USA"
+
+2. Take input from the user and display it:
+bash
+Copy code
+#!/bin/bash
+echo "Enter something:"
+read user_input
+echo "You entered: $user_input"
+
+3. Demonstrate use of command line arguments:
+bash
+Copy code
+#!/bin/bash
+echo "First argument: $1"
+echo "Second argument: $2"
+echo "All arguments: $@"
+
+4. Add two numbers where both the numbers are user inputs:
+bash
+Copy code
+#!/bin/bash
+echo "Enter the first number:"
+read num1
+echo "Enter the second number:"
+read num2
+sum=$((num1 + num2))
+echo "The sum of $num1 and $num2 is $sum"
+
+5. Check whether a number is even or odd (user input):
+bash
+Copy code
+#!/bin/bash
+echo "Enter a number:"
+read num
+if ((num % 2 == 0)); then
+  echo "$num is even"
+else
+  echo "$num is odd"
+fi
+
+6. Input 10 numbers in an array and find the second largest number:
+bash
+Copy code
+#!/bin/bash
+echo "Enter 10 numbers:"
+for i in {0..9}; do
+  read arr[i]
+done
+largest=0
+second_largest=0
+for num in "${arr[@]}"; do
+  if ((num > largest)); then
+    second_largest=$largest
+    largest=$num
+  elif ((num > second_largest && num != largest)); then
+    second_largest=$num
+  fi
+done
+echo "The second largest number is: $second_largest"
+
+7. Check whether a number is palindrome (user input):
+bash
+Copy code
+#!/bin/bash
+echo "Enter a number:"
+read num
+reverse=$(echo $num | rev)
+if [ "$num" -eq "$reverse" ]; then
+  echo "$num is a palindrome"
+else
+  echo "$num is not a palindrome"
+fi
+
+8. Check the grade of a student based on marks:
+bash
+Copy code
+#!/bin/bash
+echo "Enter student marks:"
+read marks
+if ((marks >= 90)); then
+  grade="O"
+elif ((marks >= 80)); then
+  grade="E"
+elif ((marks >= 70)); then
+  grade="A"
+elif ((marks >= 60)); then
+  grade="B"
+elif ((marks >= 50)); then
+  grade="C"
+else
+  grade="F"
+fi
+echo "Grade: $grade"
+
+9. Check if input character is a vowel using case control statement:
+bash
+Copy code
+#!/bin/bash
+echo "Enter a character:"
+read char
+case $char in
+  [aeiouAEIOU]) echo "$char is a vowel" ;;
+  *) echo "$char is not a vowel" ;;
+esac
+
+10. Sort an array using bubble sort (n is user input):
+bash
+Copy code
+#!/bin/bash
+echo "Enter number of elements:"
+read n
+echo "Enter $n numbers:"
+for ((i=0; i<n; i++)); do
+  read arr[i]
+done
+
+for ((i=0; i<n-1; i++)); do
+  for ((j=0; j<n-i-1; j++)); do
+    if ((arr[j] > arr[j+1])); then
+      temp=${arr[j]}
+      arr[j]=${arr[j+1]}
+      arr[j+1]=$temp
+    fi
+  done
+done
+echo "Sorted array: ${arr[@]}"
+
+11. Search an element from an array (n is user input):
+bash
+Copy code
+#!/bin/bash
+echo "Enter number of elements:"
+read n
+echo "Enter $n numbers:"
+for ((i=0; i<n; i++)); do
+  read arr[i]
+done
+echo "Enter the number to search:"
+read target
+found=0
+for ((i=0; i<n; i++)); do
+  if ((arr[i] == target)); then
+    found=1
+    break
+  fi
+done
+if ((found == 1)); then
+  echo "$target found at index $i"
+else
+  echo "$target not found in the array"
+fi
+
+12. Check if input string is palindrome:
+bash
+Copy code
+#!/bin/bash
+echo "Enter a string:"
+read str
+reverse=$(echo $str | rev)
+if [ "$str" == "$reverse" ]; then
+  echo "$str is a palindrome"
+else
+  echo "$str is not a palindrome"
+fi
+
+13. Create a file and count number of lines, words, and characters:
+bash
+Copy code
+#!/bin/bash
+echo "Enter the filename to create:"
+read filename
+touch $filename
+echo "Enter some text to the file (Ctrl+D to end):"
+cat > $filename
+lines=$(wc -l < $filename)
+words=$(wc -w < $filename)
+chars=$(wc -c < $filename)
+echo "File: $filename"
+echo "Lines: $lines"
+echo "Words: $words"
+echo "Characters: $chars"
+
+14. Search a pattern from a file (filename is user input):
+bash
+Copy code
+#!/bin/bash
+echo "Enter the filename:"
+read filename
+echo "Enter the pattern to search:"
+read pattern
+grep "$pattern" $filename
+Each of these scripts can be saved as individual .sh files and executed from a terminal. Make sure to give them execute permissions using chmod +x <filename.sh>.
