@@ -38,7 +38,10 @@ count=0
 # Loop through the string and find the substring
 position=0
 while [[ "$main_string" =~ "$substring" ]]; do
-  # Get the position of the first occurrence of the substring
+  # Get the position of the substring
+  position=$((position + 1))
+  
+  # Find the position of the first occurrence of the substring
   index=$(echo "$main_string" | grep -b -o "$substring" | head -n 1 | cut -d: -f1)
   
   # Print the position and increase the counter
@@ -51,3 +54,4 @@ done
 
 # Print the total number of occurrences
 echo "Total occurrences: $count"
+```
